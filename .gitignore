@@ -1,0 +1,16 @@
+# Don't commit secrets
+.env
+
+# Ignore temporary files
+__pycache__/
+*.pyc
+*.log
+*.tmp
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
