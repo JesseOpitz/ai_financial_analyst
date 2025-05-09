@@ -1,0 +1,19 @@
+import openai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+def classify_columns(samples: dict):
+    prompt = "You are an AI trained in finance. Classify each column based on name and values:\n\n"
+    for col, vals in samples.items():
+        prompt += f"Column: {col}\nValues: {vals}\n\n"
+    prompt += "Respond with a short explanation of what each column is likely to represent."
+
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3
+    )
+    return response['choices'][0]['message']['content']
